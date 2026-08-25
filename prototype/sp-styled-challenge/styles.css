@@ -67,6 +67,10 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
     sans-serif;
   font-size: 19px;
   font-weight: 400;
@@ -363,30 +367,16 @@ h2 {
 }
 
 .progress-track {
-  --progress: 68%;
-  position: relative;
   height: clamp(17.5px, 3vw, 37.5px);
-  overflow: hidden;
   background: var(--red);
 }
 
 .progress-fill {
   display: block;
-  width: var(--progress);
+  width: 68%;
   height: 100%;
   background: var(--red);
   transition: width 0.9s ease;
-}
-
-/* Keep the campaign bar solid red while showing its static position. */
-.progress-track::after {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(var(--progress) - 2px);
-  width: 4px;
-  background: var(--white);
-  content: "";
 }
 
 .challenge-actions,
@@ -470,21 +460,9 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
-details {
+.info-note {
   border-top: 1px solid var(--white);
   padding-top: 0.9rem;
-}
-
-summary {
-  color: var(--white);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-details p {
-  margin: 1rem 0 0;
   color: var(--light-grey);
   font-size: 0.95rem;
 }
