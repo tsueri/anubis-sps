@@ -376,16 +376,30 @@ h2 {
 }
 
 .progress-track {
+  --progress: 68%;
+  position: relative;
   height: clamp(17.5px, 3vw, 37.5px);
+  overflow: hidden;
   background: var(--red);
 }
 
 .progress-fill {
   display: block;
-  width: 68%;
+  width: var(--progress);
   height: 100%;
   background: var(--red);
   transition: width 0.9s ease;
+}
+
+/* Keep the campaign bar solid red while showing its static position. */
+.progress-track::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--progress) - 2px);
+  width: 4px;
+  background: var(--white);
+  content: "";
 }
 
 .challenge-actions,
@@ -565,9 +579,13 @@ details p {
   padding: 1rem 1.25rem;
   overflow-x: auto;
   color: var(--white);
-  font-family: "Iosevka Curly", ui-monospace, monospace;
   font-size: 0.85rem;
   line-height: 1.5;
+}
+
+.error-code,
+.error-code code {
+  font-family: "Iosevka Curly", ui-monospace, monospace;
 }
 
 .error-help {
