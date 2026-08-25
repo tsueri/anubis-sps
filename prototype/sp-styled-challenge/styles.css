@@ -131,7 +131,7 @@ button:disabled {
 
 .button-primary:hover:not(:disabled),
 .button-primary:focus-visible:not(:disabled) {
-  background: var(--ink);
+  background: var(--red);
   color: var(--white);
 }
 
@@ -170,7 +170,6 @@ button:disabled {
 }
 
 .masthead-meta,
-.prototype-label,
 .section-kicker,
 .eyebrow,
 .card-topline,
@@ -178,7 +177,6 @@ button:disabled {
 .progress-meta,
 .completion-label,
 .info-heading,
-.state-link,
 .footer-meta {
   font-size: 0.7rem;
   font-weight: 600;
@@ -262,21 +260,10 @@ h1 {
   line-height: 1.45;
 }
 
-.prototype-label {
-  display: inline-block;
-  margin-top: 1.25rem;
-  border: 1px solid var(--red);
-  padding: 0.35rem 0.55rem;
-  color: var(--red);
-}
-
 .challenge-card,
 .error-card {
   background: var(--white);
   box-shadow: var(--shadow);
-}
-
-.challenge-card {
   padding: clamp(15px, 3vw, 30px) clamp(15px, 5vw, 80px);
 }
 
@@ -502,31 +489,6 @@ details p {
   font-size: 0.95rem;
 }
 
-.state-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 3rem;
-  border-top: 1px solid var(--ink);
-  padding-top: 1rem;
-}
-
-.state-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.5rem;
-  border: 1px solid var(--ink);
-  padding: 0.55rem 0.8rem;
-  color: var(--ink);
-}
-
-.state-link:hover,
-.state-link[aria-current="page"] {
-  background: var(--red);
-  color: var(--white);
-  text-decoration: none;
-}
-
 .site-footer {
   border-top: 1px solid var(--ink);
   padding-block: 1.25rem 2rem;
@@ -543,14 +505,6 @@ details p {
   flex-wrap: wrap;
   gap: 0.75rem;
   color: var(--red);
-}
-
-.footer-separator {
-  color: var(--dark-grey);
-}
-
-.error-card {
-  padding: clamp(15px, 3vw, 30px) clamp(15px, 5vw, 80px);
 }
 
 .error-layout {
@@ -575,12 +529,15 @@ details p {
 
 .error-code {
   margin: 0 0 2rem;
-  background: var(--ink);
+  border: 2px solid var(--red);
+  background: var(--white);
   padding: 1rem 1.25rem;
   overflow-x: auto;
-  color: var(--white);
+  color: var(--red);
   font-size: 0.85rem;
+  font-weight: 600;
   line-height: 1.5;
+  text-align: center;
 }
 
 .error-code,
