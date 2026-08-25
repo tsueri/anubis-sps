@@ -247,13 +247,10 @@ h3 {
 h1 {
   max-width: 9ch;
   margin-bottom: 0;
+  color: var(--red);
   font-size: clamp(3.25rem, 5vw, 4.5625rem);
   line-height: 0.9;
   letter-spacing: -0.06em;
-}
-
-.text-red {
-  color: var(--red);
 }
 
 .lede {
@@ -368,14 +365,6 @@ h2 {
 .progress-track {
   height: clamp(17.5px, 3vw, 37.5px);
   background: var(--red);
-}
-
-.progress-fill {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--red);
-  transition: width 0.9s ease;
 }
 
 .challenge-actions,
@@ -561,8 +550,7 @@ h2 {
     scroll-behavior: auto;
   }
 
-  .button-primary,
-  .progress-fill {
+  .button-primary {
     transition: none;
   }
 }
