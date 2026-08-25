@@ -23,7 +23,7 @@ templ base(title string, body templ.Component, impressum *config.Impressum, hone
 			<style>
         body,
         html {
-            height: 100%;
+            min-height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -44,15 +44,15 @@ templ base(title string, body templ.Component, impressum *config.Impressum, hone
             width: 90%;
             width: min(20rem, 90%);
             height: 2rem;
-            border-radius: 1rem;
+            border-radius: 0;
             overflow: hidden;
             margin: 1rem 0 2rem;
             outline-offset: 2px;
-            outline: #b16286 solid 4px;
+            outline: #e30613 solid 4px;
         }
 
         .bar-inner {
-            background-color: #b16286;
+            background-color: #e30613;
             height: 100%;
             width: 0;
             transition: width 0.25s ease-in;
@@ -77,7 +77,6 @@ templ base(title string, body templ.Component, impressum *config.Impressum, hone
 	href="https://techaro.lol"
 >Techaro</a>. { localizer.T("made_with") }.
 						</p>
-						<p>{ localizer.T("mascot_design") } <a href="https://bsky.app/profile/celphase.bsky.social">{ localizer.T("celphase") }</a>.</p>
 						if impressum != nil {
 							<p>
 								@templ.Raw(impressum.Footer)
@@ -94,7 +93,7 @@ templ base(title string, body templ.Component, impressum *config.Impressum, hone
 
 templ errorPage(message, mail, code string, localizer *localization.SimpleLocalizer) {
 	<div class="centered-div">
-		<img id="image" alt="Sad Anubis" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/reject.webp?cacheBuster=" + anubis.Version }/>
+		<img id="image" alt="Block pictogram" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/reject.webp?cacheBuster=" + anubis.Version }/>
 		<p>{ message }.</p>
 		if code != "" {
 			<code><pre>{ code }</pre></code>
@@ -115,6 +114,7 @@ templ errorPage(message, mail, code string, localizer *localization.SimpleLocali
 templ StaticHappy(localizer *localization.SimpleLocalizer) {
 	<div class="centered-div">
 		<img
+			alt=""
 			style="display:none;"
 			style="width:100%;max-width:256px;"
 			src={ "/.within.website/x/cmd/anubis/static/img/happy.webp?cacheBuster=" +
@@ -147,7 +147,7 @@ templ bench(localizer *localization.SimpleLocalizer) {
 			></tbody>
 		</table>
 		<div class="centered-div">
-			<img id="image" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/pensive.webp?cacheBuster=" + anubis.Version }/>
+			<img id="image" alt="Gears pictogram" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/pensive.webp?cacheBuster=" + anubis.Version }/>
 			<p id="status" style="max-width:256px">{ localizer.T("loading") }</p>
 			<script async type="module" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/js/bench.mjs?cacheBuster=" + anubis.Version }></script>
 			<div id="sparkline"></div>

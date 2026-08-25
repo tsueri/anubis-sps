@@ -8,7 +8,7 @@ import (
 templ page(redir, challenge string, difficulty int, loc *localization.SimpleLocalizer) {
 	<div class="centered-div">
 		<div id="app">
-			<img id="image" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/pensive.webp?cacheBuster=" + anubis.Version }/>
+			<img id="image" alt="Gears pictogram" style="width:100%;max-width:256px;" src={ anubis.BasePrefix + "/.within.website/x/cmd/anubis/static/img/pensive.webp?cacheBuster=" + anubis.Version }/>
 			<p id="status">{ loc.T("loading") }</p>
 			<p>{ loc.T("connection_security") }</p>
 		</div>

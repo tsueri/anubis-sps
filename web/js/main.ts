@@ -226,12 +226,12 @@ interface OhNoesParams {
       container.style.alignItems = "center";
       container.style.justifyContent = "center";
       container.style.height = "2rem";
-      container.style.borderRadius = "1rem";
+      container.style.borderRadius = "0";
       container.style.cursor = "pointer";
-      container.style.background = "#b16286";
+      container.style.background = "#e30613";
       container.style.color = "white";
       container.style.fontWeight = "bold";
-      container.style.outline = "4px solid #b16286";
+      container.style.outline = "4px solid #e30613";
       container.style.outlineOffset = "2px";
       container.style.width = "min(20rem, 90%)";
       container.style.margin = "1rem auto 2rem";
