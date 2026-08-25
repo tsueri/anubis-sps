@@ -1,7 +1,7 @@
 :root {
-  --body-sans-font: Geist, sans-serif;
+  --body-sans-font: Inter, sans-serif;
   --body-preformatted-font: Iosevka Curly Iaso, monospace;
-  --body-title-font: Podkova, serif;
+  --body-title-font: Inter, sans-serif;
 
   --background: #1d2021;
   --text: #f9f5d7;
@@ -27,19 +27,27 @@
 }
 
 @font-face {
-  font-family: "Geist";
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
-  src: url("./static/geist.woff2") format("woff2");
+  src: url("./static/inter-regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Podkova";
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 600;
   font-display: swap;
-  src: url("./static/podkova.woff2") format("woff2");
+  src: url("./static/inter-semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("./static/inter-extrabold.woff2") format("woff2");
 }
 
 @font-face {
@@ -136,6 +144,8 @@ h4,
 h5 {
   margin-bottom: 0.1rem;
   font-family: var(--body-title-font);
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 blockquote {
