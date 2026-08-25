@@ -135,24 +135,6 @@ button:disabled {
   color: var(--white);
 }
 
-.button-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--light-grey);
-  color: var(--red);
-  transition:
-    background-color 0.25s ease-in-out,
-    color 0.25s ease-in-out;
-}
-
-.button-secondary:hover,
-.button-secondary:focus-visible {
-  background: var(--red);
-  color: var(--white);
-  text-decoration: none;
-}
-
 .masthead,
 .page-shell,
 .site-footer {
@@ -295,7 +277,7 @@ h1 {
 }
 
 .challenge-card {
-  border-top: 12px solid var(--red);
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 5vw, 5rem);
 }
 
 .card-topline {
@@ -337,7 +319,8 @@ h1 {
   padding-right: clamp(1.5rem, 4vw, 4rem);
 }
 
-.icon-frame {
+.icon-frame,
+.error-icon-frame {
   display: grid;
   place-items: center;
   min-height: clamp(15rem, 30vw, 21rem);
@@ -393,8 +376,10 @@ h2 {
 }
 
 .progress-track {
-  height: 1.15rem;
-  background: var(--pale-blue);
+  height: 1.4rem;
+  border: 3px solid var(--red);
+  background: var(--white);
+  padding: 2px;
 }
 
 .progress-fill {
@@ -446,6 +431,7 @@ h2 {
 
 .card-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
   border-top: 1px solid var(--ink);
@@ -552,7 +538,6 @@ details p {
 }
 
 .error-card {
-  border-top: 12px solid var(--red);
   padding: clamp(1.5rem, 5vw, 4.5rem);
 }
 
@@ -561,13 +546,6 @@ details p {
   grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
   align-items: center;
   gap: clamp(2rem, 7vw, 7rem);
-}
-
-.error-icon-frame {
-  display: grid;
-  place-items: center;
-  min-height: clamp(15rem, 30vw, 21rem);
-  background: var(--pale-blue);
 }
 
 .error-icon {
@@ -674,7 +652,6 @@ details p {
   }
 
   .button-primary,
-  .button-secondary,
   .progress-fill {
     transition: none;
   }
