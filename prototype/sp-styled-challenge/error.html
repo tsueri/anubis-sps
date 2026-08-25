@@ -1,88 +1,41 @@
 <!doctype html>
-<!-- PROTOTYPE ONLY: this page is a visual proposal, not production markup. -->
+<!-- PROTOTYPE ONLY: minimal SP-PS restyle of the original Anubis error page. -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Request blocked | Anubis prototype</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Oh noes!</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="page-error">
-    <header class="masthead">
-      <a
-        class="wordmark"
-        href="./index.html"
-        aria-label="Anubis prototype home"
-      >
-        Anubis<span class="wordmark-mark">/</span>
-      </a>
-      <div class="masthead-meta">
-        <span class="masthead-signal" aria-hidden="true"></span>
-        <span>Security check / Browser gate</span>
+  <body id="top">
+    <main>
+      <h1 id="title" class="centered-div">Oh noes!</h1>
+      <div class="centered-div">
+        <img
+          id="image"
+          alt="Block pictogram"
+          style="width: 100%; max-width: 256px"
+          src="../../web/static/img/reject.webp"
+        />
+        <p>Access Denied: error code 1234567890abcdef.</p>
+        <code><pre>challenge: invalid response</pre></code>
+        <p>
+          <a href="/">Go home</a> or if you believe you should not be blocked,
+          please contact the webmaster at
+          <a href="mailto:webmaster@example.com">webmaster@example.com</a>
+        </p>
       </div>
-    </header>
-
-    <main class="page-shell">
-      <section class="intro" aria-labelledby="page-title">
-        <div>
-          <div class="section-kicker">Security gate / 02</div>
-          <h1 id="page-title">Request blocked</h1>
-        </div>
-        <div>
-          <p class="lede">
-            The browser check could not verify this request. The site owner can
-            help if the problem continues.
+      <footer>
+        <div class="centered-div">
+          <p>
+            Protected by
+            <a href="https://github.com/TecharoHQ/anubis">Anubis</a> From
+            <a href="https://techaro.lol">Techaro</a>. Made with ❤️ in 🇨🇦.
           </p>
+          <p>This website is running Anubis version <code>1.27.0</code>.</p>
         </div>
-      </section>
-
-      <section class="error-card" aria-labelledby="error-title">
-        <div class="error-layout">
-          <div class="error-icon-frame">
-            <img
-              class="error-icon"
-              src="../../web/static/img/reject.webp"
-              alt="Block pictogram showing that the request was rejected"
-            />
-          </div>
-
-          <div class="error-copy" role="alert">
-            <p class="eyebrow">Verification failed / 403</p>
-            <h2 id="error-title">This request could not be verified</h2>
-            <p>
-              The security check did not complete. Try again, or contact the
-              website owner if you believe this was a mistake.
-            </p>
-
-            <pre
-              class="error-code"
-            ><code>challenge: invalid response</code></pre>
-
-            <div class="error-actions">
-              <a class="button button-primary" href="./index.html">Try again</a>
-            </div>
-
-            <div class="error-help">
-              <p>
-                Include the error text above when reporting the problem. It
-                helps the website owner identify this request.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      </footer>
     </main>
-
-    <footer class="site-footer">
-      <p>
-        Protected by <a href="https://github.com/TecharoHQ/anubis">Anubis</a>
-        from automated traffic. Made with care by
-        <a href="https://techaro.lol">Techaro</a>.
-      </p>
-      <div class="footer-meta">
-        <span>Version 1.27.0</span>
-      </div>
-    </footer>
   </body>
 </html>

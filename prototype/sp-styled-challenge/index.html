@@ -1,120 +1,79 @@
 <!doctype html>
-<!-- PROTOTYPE ONLY: this page is a visual proposal, not production markup. -->
+<!-- PROTOTYPE ONLY: minimal SP-PS restyle of the original Anubis challenge page. -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Verify your humanity | Anubis prototype</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Making sure you're not a bot!</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="page-challenge">
-    <header class="masthead">
-      <a
-        class="wordmark"
-        href="./index.html"
-        aria-label="Anubis prototype home"
-      >
-        Anubis<span class="wordmark-mark">/</span>
-      </a>
-      <div class="masthead-meta">
-        <span class="masthead-signal" aria-hidden="true"></span>
-        <span>Security check / Browser gate</span>
-      </div>
-    </header>
-
-    <main class="page-shell">
-      <section class="intro" aria-labelledby="page-title">
-        <div>
-          <div class="section-kicker">Security gate / 01</div>
-          <h1 id="page-title">Verify your humanity</h1>
+  <body id="top">
+    <main>
+      <h1 id="title" class="centered-div">Making sure you're not a bot!</h1>
+      <div class="centered-div">
+        <img
+          id="image"
+          style="width: 100%; max-width: 256px"
+          src="../../web/static/img/pensive.webp"
+          alt="Gears pictogram"
+        />
+        <img
+          style="display: none"
+          src="../../web/static/img/happy.webp"
+          alt=""
+        />
+        <p id="status">Loading...</p>
+        <div id="progress" role="progressbar" aria-labelledby="status">
+          <div class="bar-inner"></div>
         </div>
-        <div>
-          <p class="lede">
-            A short browser check keeps automated traffic away from this site.
+        <details>
+          <p>
+            You are seeing this because the administrator of this website has
+            set up Anubis to protect the server against the scourge of AI
+            companies aggressively scraping websites. This can and does cause
+            downtime for the websites, which makes their resources inaccessible
+            for everyone.
           </p>
-        </div>
-      </section>
-
-      <section class="challenge-card" aria-labelledby="challenge-title">
-        <div class="card-topline">
-          <span>Check in progress</span>
-          <span class="status-pill">
-            <span class="status-dot" aria-hidden="true"></span>
-            Step 01
-          </span>
-        </div>
-
-        <div class="challenge-grid">
-          <div class="visual-column">
-            <div class="icon-frame">
-              <img
-                class="challenge-icon"
-                src="../../web/static/img/pensive.webp"
-                alt="Gears pictogram showing that the browser check is in progress"
-              />
-            </div>
-            <p class="visual-note">No action<br /><span>required</span></p>
-          </div>
-
-          <div class="challenge-copy">
-            <p class="eyebrow">Step 01 / Browser check</p>
-            <h2 id="challenge-title">Checking your connection</h2>
-            <p>
-              Your browser is completing a small proof-of-work check. This
-              should only take a few seconds.
-            </p>
-
-            <div class="progress-group">
-              <div class="progress-meta">
-                <span>Verification progress</span>
-                <strong>In progress</strong>
-              </div>
-              <div
-                class="progress-track"
-                role="progressbar"
-                aria-label="Verification progress"
-              ></div>
-            </div>
-
-            <div class="challenge-actions">
-              <button class="button-primary" type="button" disabled>
-                Checking...
-              </button>
-            </div>
-
-            <div class="completion-note">
-              <img
-                class="completion-icon"
-                src="../../web/static/img/happy.webp"
-                alt=""
-              />
-              <p>
-                <span class="completion-label">On pass</span>
-                Continue to the site automatically.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <span class="card-footer-mark" aria-hidden="true">+</span>
-          <span>Browser check</span>
-          <span class="card-footer-rule" aria-hidden="true"></span>
-          <span>ANUBIS CHECK / 01</span>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>
-        Protected by <a href="https://github.com/TecharoHQ/anubis">Anubis</a>
-        from automated traffic. Made with care by
-        <a href="https://techaro.lol">Techaro</a>.
-      </p>
-      <div class="footer-meta">
-        <span>Version 1.27.0</span>
+          <p>
+            Anubis is a compromise. Anubis uses a Proof-of-Work scheme in the
+            vein of Hashcash, a proposed proof-of-work scheme for reducing email
+            spam. The idea is that at individual scales the additional load is
+            ignorable, but at mass scraper levels it adds up and makes scraping
+            much more expensive.
+          </p>
+          <p>
+            Ultimately, this is a placeholder solution so that more time can be
+            spent on fingerprinting and identifying headless browsers (EG: via
+            how they do font rendering) so that the challenge proof of work page
+            doesn't need to be presented to users that are much more likely to
+            be legitimate.
+          </p>
+          <p>
+            Please note that Anubis requires the use of modern JavaScript
+            features that plugins like JShelter will disable. Please disable
+            JShelter or other such plugins for this domain.
+          </p>
+        </details>
+        <noscript>
+          <p>
+            Sadly, you must enable JavaScript to get past this challenge. This
+            is required because AI companies have changed the social contract
+            around how website hosting works. A no-JS solution is a
+            work-in-progress.
+          </p>
+        </noscript>
       </div>
-    </footer>
+      <footer>
+        <div class="centered-div">
+          <p>
+            Protected by
+            <a href="https://github.com/TecharoHQ/anubis">Anubis</a> From
+            <a href="https://techaro.lol">Techaro</a>. Made with ❤️ in 🇨🇦.
+          </p>
+          <p>This website is running Anubis version <code>1.27.0</code>.</p>
+        </div>
+      </footer>
+    </main>
   </body>
 </html>
