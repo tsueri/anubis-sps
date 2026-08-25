@@ -22,3 +22,6 @@ node_modules
 doc/VERSION
 
 web/static/locales/*.json
+
+#ignore Codegraph
+.codegraph*
