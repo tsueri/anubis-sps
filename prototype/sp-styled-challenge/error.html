@@ -1,0 +1,101 @@
+<!doctype html>
+<!-- PROTOTYPE ONLY: this page is a visual proposal, not production markup. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Request blocked | Anubis prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="page-error">
+    <header class="masthead">
+      <a
+        class="wordmark"
+        href="./index.html"
+        aria-label="Anubis prototype home"
+      >
+        Anubis<span class="wordmark-mark">/</span>
+      </a>
+      <div class="masthead-meta">
+        <span class="masthead-signal" aria-hidden="true"></span>
+        <span>Security check / Browser gate</span>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <div class="section-kicker">Security gate / 02</div>
+          <h1 id="page-title">Request <span class="text-red">blocked</span></h1>
+        </div>
+        <div>
+          <p class="lede">
+            The browser check could not verify this request. The site owner can
+            help if the problem continues.
+          </p>
+          <span class="prototype-label">SP-PS direction / static mock</span>
+        </div>
+      </section>
+
+      <section class="error-card" aria-labelledby="error-title">
+        <div class="error-layout">
+          <div class="error-icon-frame">
+            <img
+              class="error-icon"
+              src="../../web/static/img/reject.webp"
+              alt="Block pictogram showing that the request was rejected"
+            />
+          </div>
+
+          <div class="error-copy" role="alert">
+            <p class="eyebrow">Verification failed / 403</p>
+            <h2 id="error-title">This request could not be verified</h2>
+            <p>
+              The security check did not complete. Try again, or contact the
+              website owner if you believe this was a mistake.
+            </p>
+
+            <pre
+              class="error-code"
+            ><code>challenge: invalid response</code></pre>
+
+            <div class="error-actions">
+              <a class="button button-primary" href="./index.html">Try again</a>
+              <a class="text-link" href="mailto:webmaster@example.com">
+                Contact the website owner
+              </a>
+            </div>
+
+            <div class="error-help">
+              <p>
+                Include the error text above when reporting the problem. It
+                helps the website owner identify this request.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="state-nav" aria-label="Prototype page states">
+        <a class="state-link" href="./index.html">Challenge state</a>
+        <a class="state-link" href="./error.html" aria-current="page">
+          Error state
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Protected by <a href="https://github.com/TecharoHQ/anubis">Anubis</a>
+        from automated traffic. Made with care by
+        <a href="https://techaro.lol">Techaro</a>.
+      </p>
+      <div class="footer-meta">
+        <span>Visual prototype</span>
+        <span class="footer-separator" aria-hidden="true">/</span>
+        <span>Version 1.27.0</span>
+      </div>
+    </footer>
+  </body>
+</html>

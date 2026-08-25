@@ -1,0 +1,156 @@
+<!doctype html>
+<!-- PROTOTYPE ONLY: this page is a visual proposal, not production markup. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Verify your humanity | Anubis prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="page-challenge">
+    <header class="masthead">
+      <a
+        class="wordmark"
+        href="./index.html"
+        aria-label="Anubis prototype home"
+      >
+        Anubis<span class="wordmark-mark">/</span>
+      </a>
+      <div class="masthead-meta">
+        <span class="masthead-signal" aria-hidden="true"></span>
+        <span>Security check / Browser gate</span>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <div class="section-kicker">Security gate / 01</div>
+          <h1 id="page-title">
+            Verify <span class="text-red">your humanity</span>
+          </h1>
+        </div>
+        <div>
+          <p class="lede">
+            A short browser check keeps automated traffic away from this site.
+          </p>
+          <span class="prototype-label">SP-PS direction / static mock</span>
+        </div>
+      </section>
+
+      <section class="challenge-card" aria-labelledby="challenge-title">
+        <div class="card-topline">
+          <span>Check in progress</span>
+          <span class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            Live
+          </span>
+        </div>
+
+        <div class="challenge-grid">
+          <div class="visual-column">
+            <div class="icon-frame">
+              <img
+                class="challenge-icon"
+                src="../../web/static/img/pensive.webp"
+                alt="Gears pictogram showing that the browser check is in progress"
+              />
+            </div>
+            <p class="visual-note">No action<br /><span>required</span></p>
+          </div>
+
+          <div class="challenge-copy">
+            <p class="eyebrow">Step 01 / Browser check</p>
+            <h2 id="challenge-title">Checking your connection</h2>
+            <p>
+              Your browser is completing a small proof-of-work check. This
+              should only take a few seconds.
+            </p>
+
+            <div class="progress-group">
+              <div class="progress-meta">
+                <span>Verification progress</span>
+                <strong>68%</strong>
+              </div>
+              <div
+                class="progress-track"
+                role="progressbar"
+                aria-label="Verification progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="68"
+              >
+                <span class="progress-fill"></span>
+              </div>
+            </div>
+
+            <div class="challenge-actions">
+              <button class="button-primary" type="button" disabled>
+                Checking...
+              </button>
+              <a class="text-link" href="#why">Why is this needed?</a>
+            </div>
+
+            <div class="completion-note">
+              <img
+                class="completion-icon"
+                src="../../web/static/img/happy.webp"
+                alt=""
+              />
+              <p>
+                <span class="completion-label">On pass</span>
+                Continue to the site automatically.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-footer-mark" aria-hidden="true">+</span>
+          <span>Connection encrypted</span>
+          <span class="card-footer-rule" aria-hidden="true"></span>
+          <span>ANUBIS CHECK / 01</span>
+        </div>
+      </section>
+
+      <section class="info-panel" id="why" aria-labelledby="why-title">
+        <div class="info-heading" id="why-title">Why this check?</div>
+        <div>
+          <p>
+            Some sites use a short browser check to separate people from
+            automated traffic. No account is required.
+          </p>
+          <details>
+            <summary>What happens next?</summary>
+            <p>
+              Once the check passes, this page sends you back to the address you
+              requested. If it cannot complete, use the error-state mock below
+              to contact the website owner.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <nav class="state-nav" aria-label="Prototype page states">
+        <a class="state-link" href="./index.html" aria-current="page">
+          Challenge state
+        </a>
+        <a class="state-link" href="./error.html">Error state</a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Protected by <a href="https://github.com/TecharoHQ/anubis">Anubis</a>
+        from automated traffic. Made with care by
+        <a href="https://techaro.lol">Techaro</a>.
+      </p>
+      <div class="footer-meta">
+        <span>Visual prototype</span>
+        <span class="footer-separator" aria-hidden="true">/</span>
+        <span>Version 1.27.0</span>
+      </div>
+    </footer>
+  </body>
+</html>
