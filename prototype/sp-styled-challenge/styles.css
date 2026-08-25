@@ -277,7 +277,7 @@ h1 {
 }
 
 .challenge-card {
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 5vw, 5rem);
+  padding: clamp(15px, 3vw, 30px) clamp(15px, 5vw, 80px);
 }
 
 .card-topline {
@@ -376,10 +376,8 @@ h2 {
 }
 
 .progress-track {
-  height: 1.4rem;
-  border: 3px solid var(--red);
-  background: var(--white);
-  padding: 2px;
+  height: clamp(17.5px, 3vw, 37.5px);
+  background: var(--red);
 }
 
 .progress-fill {
@@ -538,7 +536,7 @@ details p {
 }
 
 .error-card {
-  padding: clamp(1.5rem, 5vw, 4.5rem);
+  padding: clamp(15px, 3vw, 30px) clamp(15px, 5vw, 80px);
 }
 
 .error-layout {
@@ -639,10 +637,6 @@ details p {
 
   .info-panel {
     gap: 1rem;
-  }
-
-  .error-card {
-    padding: 1.5rem;
   }
 }
 
