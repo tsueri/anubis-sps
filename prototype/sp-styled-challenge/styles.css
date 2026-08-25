@@ -180,7 +180,6 @@ button:disabled {
 .visual-note,
 .progress-meta,
 .completion-label,
-.info-heading,
 .footer-meta {
   font-size: 0.7rem;
   font-weight: 600;
@@ -367,9 +366,7 @@ h2 {
 }
 
 .progress-track {
-  position: relative;
   height: clamp(17.5px, 3vw, 37.5px);
-  overflow: hidden;
   background: var(--red);
 }
 
@@ -381,39 +378,12 @@ h2 {
   transition: width 0.9s ease;
 }
 
-/* A moving marker keeps the static solid-red bar visibly indeterminate. */
-.progress-track::after {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 4px;
-  background: var(--white);
-  content: "";
-  animation: progress-marker 1.8s linear infinite;
-}
-
-@keyframes progress-marker {
-  from {
-    transform: translateX(-4px);
-  }
-
-  to {
-    transform: translateX(calc(100% + 4px));
-  }
-}
-
 .challenge-actions,
 .error-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 1.25rem;
-}
-
-.text-link {
-  font-size: 0.9rem;
-  font-weight: 600;
 }
 
 .completion-note {
@@ -463,32 +433,6 @@ h2 {
   flex: 1;
   height: 1px;
   background: var(--ink);
-}
-
-.info-panel {
-  display: grid;
-  grid-template-columns: minmax(10rem, 0.45fr) minmax(0, 1fr);
-  gap: 2rem;
-  margin-top: clamp(3rem, 7vw, 6rem);
-  background: var(--dark-grey);
-  padding: clamp(1.5rem, 4vw, 3rem);
-  color: var(--white);
-}
-
-.info-heading {
-  color: var(--red);
-}
-
-.info-panel p {
-  max-width: 39rem;
-  margin-bottom: 1.5rem;
-}
-
-.info-note {
-  border-top: 1px solid var(--white);
-  padding-top: 0.9rem;
-  color: var(--light-grey);
-  font-size: 0.95rem;
 }
 
 .site-footer {
@@ -579,8 +523,7 @@ h2 {
 
   .intro,
   .challenge-grid,
-  .error-layout,
-  .info-panel {
+  .error-layout {
     grid-template-columns: 1fr;
   }
 
@@ -611,10 +554,6 @@ h2 {
   .error-icon {
     width: min(50%, 11rem);
   }
-
-  .info-panel {
-    gap: 1rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -625,10 +564,5 @@ h2 {
   .button-primary,
   .progress-fill {
     transition: none;
-  }
-
-  .progress-track::after {
-    left: 50%;
-    animation: none;
   }
 }
