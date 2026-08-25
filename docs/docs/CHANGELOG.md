@@ -20,6 +20,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix proof of work worker spawning fallback logic to properly detect Content-Security-Policy failures and fall back to the older logic that fans out to one request per hardware core ([#1864](https://github.com/TecharoHQ/anubis/issues/1864)).
 - [Content-Security-Policy advice](./admin/configuration/content-security-policy.mdx) has been added to the documentation.
 
+## v1.27.0-sps
+
+The SP-PS fork of Anubis restyles the challenge, error, bench, and static-check pages in the sp-ps.ch visual language.
+
+### Changed
+
+- Replace the mascot images with calm pictograms rendered as 511x511 transparent WebP: pass (checkmark, `#4FC2B1`), gears (`#404252`), and block (circle-slash, `#E30613`). The `happy.webp`, `pensive.webp`, and `reject.webp` filenames are unchanged.
+- Bundle Inter (weights 400/600/800) into xess, retiring Geist and Podkova; Iosevka-curly remains for code.
+- Restyle the challenge, error, bench, and static-check pages with the SP-PS visual language: brand red `#E30613`, uppercase bold headings, and white square-cornered cards.
+- Remove the mascot credit line from the footer and its `mascot_design` / `celphase` localization keys.
+
 ## v1.27.0: Moenbryda Wilfsunnwyn
 
 Anubis v1.27.0 adds Windows Server support, automatically renames cookies based on settings to avoid infinite challenge loops, adds two new localizations, and more.
