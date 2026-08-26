@@ -21,6 +21,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Content-Security-Policy advice](./admin/configuration/content-security-policy.mdx) has been added to the documentation.
 - Detect and block trivial attempts at [domain fronting](https://en.wikipedia.org/wiki/Domain_fronting) as bots have been starting to use that to try and turn web applications or HTTP servers into open proxies.
 
+## v1.27.0-sps1
+
+Patch release on top of v1.27.0-sps.
+
+### Fixed
+
+- Attribute the OG-Tag fetcher's request to the visitor: `internal/ogtags/fetch.go` now sends `X-Forwarded-For` and `X-Real-Ip` with the derived client IP, so origin-side logging that consumes XFF (e.g. Apache `mod_remoteip`) records the real client IP instead of the fetcher's own address. The fetcher runs on-host, inside the trust boundary.
+
 ## v1.27.0-sps
 
 The SP-PS fork of Anubis restyles the challenge, error, bench, and static-check pages in the sp-ps.ch visual language.

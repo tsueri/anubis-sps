@@ -121,7 +121,7 @@ func TestIntegrationGetOGTags(t *testing.T) {
 
 			// Get OG tags
 			// Pass the host from the test URL
-			ogTags, err := cache.GetOGTags(t.Context(), testURL, testURL.Host)
+			ogTags, err := cache.GetOGTags(t.Context(), testURL, testURL.Host, "")
 
 			// Check error expectation
 			if tc.expectError {
@@ -149,7 +149,7 @@ func TestIntegrationGetOGTags(t *testing.T) {
 
 			// Test cache retrieval
 			// Pass the host from the test URL
-			cachedOGTags, err := cache.GetOGTags(t.Context(), testURL, testURL.Host)
+			cachedOGTags, err := cache.GetOGTags(t.Context(), testURL, testURL.Host, "")
 			if err != nil {
 				t.Fatalf("failed to get OG tags from cache: %v", err)
 			}

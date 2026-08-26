@@ -19,8 +19,9 @@ var (
 )
 
 // fetchHTMLDocumentWithCache fetches the HTML document from the given URL string,
-// preserving the original host header.
-func (c *OGTagCache) fetchHTMLDocumentWithCache(ctx context.Context, urlStr string, originalHost string, cacheKey string) (*html.Node, error) {
+// preserving the original host header and attributing the fetch to the visitor's
+// IP when known.
+func (c *OGTagCache) fetchHTMLDocumentWithCache(ctx context.Context, urlStr string, originalHost string, clientIP string, cacheKey string) (*html.Node, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", urlStr, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create http request: %w", err)
@@ -47,6 +48,14 @@ func (c *OGTagCache) fetchHTMLDocumentWithCache(ctx context.Context, urlStr stri
 	// the OG tags are being requested for.
 	if originalHost != "" {
 		req.Header.Set("X-Forwarded-Host", originalHost)
+	}
+	// Attribute the fetch to the visitor so origin-side logging (e.g. Apache's
+	// mod_remoteip consuming X-Forwarded-For) shows the real client IP instead
+	// of the fetcher's own address. The fetcher runs on-host, inside the trust
+	// boundary, mirroring the proxy path's XFF/X-Real-Ip.
+	if clientIP != "" {
+		req.Header.Set("X-Forwarded-For", clientIP)
+		req.Header.Set("X-Real-Ip", clientIP)
 	}
 	req.Header.Set("User-Agent", "Anubis-OGTag-Fetcher/1.0") // For tracking purposes
 

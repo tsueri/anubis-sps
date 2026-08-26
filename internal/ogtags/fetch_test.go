@@ -88,7 +88,7 @@ func TestFetchHTMLDocument(t *testing.T) {
 				TimeToLive:   time.Minute,
 				ConsiderHost: false,
 			}, memory.New(t.Context()), TargetOptions{})
-			doc, err := cache.fetchHTMLDocument(t.Context(), ts.URL, "anything")
+			doc, err := cache.fetchHTMLDocument(t.Context(), ts.URL, "anything", "")
 
 			if tt.expectError {
 				if err == nil {
@@ -120,7 +120,7 @@ func TestFetchHTMLDocumentInvalidURL(t *testing.T) {
 		ConsiderHost: false,
 	}, memory.New(t.Context()), TargetOptions{})
 
-	doc, err := cache.fetchHTMLDocument(t.Context(), "http://invalid.url.that.doesnt.exist.example", "anything")
+	doc, err := cache.fetchHTMLDocument(t.Context(), "http://invalid.url.that.doesnt.exist.example", "anything", "")
 
 	if err == nil {
 		t.Error("expected error for invalid URL, got nil")
@@ -132,9 +132,62 @@ func TestFetchHTMLDocumentInvalidURL(t *testing.T) {
 }
 
 // fetchHTMLDocument allows you to call fetchHTMLDocumentWithCache without a duplicate generateCacheKey call
-func (c *OGTagCache) fetchHTMLDocument(ctx context.Context, urlStr string, originalHost string) (*html.Node, error) {
+func (c *OGTagCache) fetchHTMLDocument(ctx context.Context, urlStr string, originalHost string, clientIP string) (*html.Node, error) {
 	cacheKey := c.generateCacheKey(urlStr, originalHost)
-	return c.fetchHTMLDocumentWithCache(ctx, urlStr, originalHost, cacheKey)
+	return c.fetchHTMLDocumentWithCache(ctx, urlStr, originalHost, clientIP, cacheKey)
+}
+
+// TestFetchForwardsClientIP pins the behaviour that the OG fetcher attributes its
+// request to the visitor. The fetcher runs on-host (inside the trust boundary), so
+// origin-side logging that consumes X-Forwarded-For (e.g. Apache mod_remoteip)
+// shows the real client IP instead of the fetcher's own address.
+func TestFetchForwardsClientIP(t *testing.T) {
+	for _, tt := range []struct {
+		name        string
+		clientIP    string
+		wantForward string
+		wantRealIP  string
+	}{
+		{
+			name:        "client IP forwarded on both headers",
+			clientIP:    "203.0.113.7",
+			wantForward: "203.0.113.7",
+			wantRealIP:  "203.0.113.7",
+		},
+		{
+			name:        "no client IP means no IP headers",
+			clientIP:    "",
+			wantForward: "",
+			wantRealIP:  "",
+		},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			var gotForwardedFor, gotRealIP string
+			ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				gotForwardedFor = r.Header.Get("X-Forwarded-For")
+				gotRealIP = r.Header.Get("X-Real-Ip")
+				w.Header().Set("Content-Type", "text/html")
+				w.Write([]byte(`<html><head><meta property="og:title" content="ok"></head></html>`)) //nolint:errcheck
+			}))
+			defer ts.Close()
+
+			cache := NewOGTagCache("", config.OpenGraph{
+				Enabled:    true,
+				TimeToLive: time.Minute,
+			}, memory.New(t.Context()), TargetOptions{})
+
+			if _, err := cache.fetchHTMLDocument(t.Context(), ts.URL, "anubis.techaro.lol", tt.clientIP); err != nil {
+				t.Fatalf("unexpected error: %v", err)
+			}
+
+			if gotForwardedFor != tt.wantForward {
+				t.Errorf("X-Forwarded-For: got %q, want %q", gotForwardedFor, tt.wantForward)
+			}
+			if gotRealIP != tt.wantRealIP {
+				t.Errorf("X-Real-Ip: got %q, want %q", gotRealIP, tt.wantRealIP)
+			}
+		})
+	}
 }
 
 // TestFetchForwardsOriginalHostHeader pins the behaviour that the OG fetcher tells
@@ -191,7 +244,7 @@ func TestFetchForwardsOriginalHostHeader(t *testing.T) {
 				TimeToLive: time.Minute,
 			}, memory.New(t.Context()), TargetOptions{Host: tt.targetHost})
 
-			if _, err := cache.fetchHTMLDocument(t.Context(), ts.URL, tt.originalHost); err != nil {
+			if _, err := cache.fetchHTMLDocument(t.Context(), ts.URL, tt.originalHost, ""); err != nil {
 				t.Fatalf("unexpected error: %v", err)
 			}
 

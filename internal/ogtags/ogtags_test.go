@@ -259,7 +259,7 @@ func TestIntegrationGetOGTags_UnixSocket(t *testing.T) {
 
 	// Get OG tags
 	// Pass an empty string for host, as it's irrelevant for unix sockets
-	ogTags, err := cache.GetOGTags(t.Context(), testReqURL, "")
+	ogTags, err := cache.GetOGTags(t.Context(), testReqURL, "", "")
 
 	if err != nil {
 		t.Fatalf("GetOGTags failed for unix socket: %v", err)
@@ -275,7 +275,7 @@ func TestIntegrationGetOGTags_UnixSocket(t *testing.T) {
 
 	// Test cache retrieval (should hit cache)
 	// Pass an empty string for host
-	cachedTags, err := cache.GetOGTags(t.Context(), testReqURL, "")
+	cachedTags, err := cache.GetOGTags(t.Context(), testReqURL, "", "")
 	if err != nil {
 		t.Fatalf("GetOGTags (cache hit) failed for unix socket: %v", err)
 	}
@@ -310,7 +310,7 @@ func TestGetOGTagsWithTargetHostOverride(t *testing.T) {
 
 	t.Run("default host uses original", func(t *testing.T) {
 		cache := NewOGTagCache(ts.URL, conf, memory.New(t.Context()), TargetOptions{})
-		if _, err := cache.GetOGTags(t.Context(), targetURL, originalHost); err != nil {
+		if _, err := cache.GetOGTags(t.Context(), targetURL, originalHost, ""); err != nil {
 			t.Fatalf("GetOGTags failed: %v", err)
 		}
 		select {
@@ -327,7 +327,7 @@ func TestGetOGTagsWithTargetHostOverride(t *testing.T) {
 		cache := NewOGTagCache(ts.URL, conf, memory.New(t.Context()), TargetOptions{
 			Host: overrideHost,
 		})
-		if _, err := cache.GetOGTags(t.Context(), targetURL, originalHost); err != nil {
+		if _, err := cache.GetOGTags(t.Context(), targetURL, originalHost, ""); err != nil {
 			t.Fatalf("GetOGTags failed: %v", err)
 		}
 		select {
@@ -363,7 +363,7 @@ func TestGetOGTagsWithInsecureSkipVerify(t *testing.T) {
 
 	// Without skip verify we should get a TLS error
 	cacheStrict := NewOGTagCache(ts.URL, conf, memory.New(t.Context()), TargetOptions{})
-	if _, err := cacheStrict.GetOGTags(t.Context(), parsedURL, parsedURL.Host); err == nil {
+	if _, err := cacheStrict.GetOGTags(t.Context(), parsedURL, parsedURL.Host, ""); err == nil {
 		t.Fatal("expected TLS verification error without InsecureSkipVerify")
 	}
 
@@ -371,7 +371,7 @@ func TestGetOGTagsWithInsecureSkipVerify(t *testing.T) {
 		InsecureSkipVerify: true,
 	})
 
-	tags, err := cacheSkip.GetOGTags(t.Context(), parsedURL, parsedURL.Host)
+	tags, err := cacheSkip.GetOGTags(t.Context(), parsedURL, parsedURL.Host, "")
 	if err != nil {
 		t.Fatalf("expected successful fetch with InsecureSkipVerify, got: %v", err)
 	}
@@ -402,7 +402,7 @@ func TestGetOGTagsWithTargetSNI(t *testing.T) {
 			SNI:                expectedSNI,
 			InsecureSkipVerify: true,
 		})
-		if _, err := cacheExplicit.GetOGTags(t.Context(), targetURL, originalHost); err != nil {
+		if _, err := cacheExplicit.GetOGTags(t.Context(), targetURL, originalHost, ""); err != nil {
 			t.Fatalf("expected successful fetch with explicit SNI, got: %v", err)
 		}
 		if got := recorder.last(); got != expectedSNI {
@@ -423,7 +423,7 @@ func TestGetOGTagsWithTargetSNI(t *testing.T) {
 			SNI:                "auto",
 			InsecureSkipVerify: true,
 		})
-		if _, err := cacheAuto.GetOGTags(t.Context(), targetURL, originalHost); err != nil {
+		if _, err := cacheAuto.GetOGTags(t.Context(), targetURL, originalHost, ""); err != nil {
 			t.Fatalf("expected successful fetch with auto SNI, got: %v", err)
 		}
 		if got := recorder.last(); got != originalHost {
@@ -443,7 +443,7 @@ func TestGetOGTagsWithTargetSNI(t *testing.T) {
 		cacheDefault := NewOGTagCache(ts.URL, conf, memory.New(t.Context()), TargetOptions{
 			InsecureSkipVerify: true,
 		})
-		if _, err := cacheDefault.GetOGTags(t.Context(), targetURL, originalHost); err != nil {
+		if _, err := cacheDefault.GetOGTags(t.Context(), targetURL, originalHost, ""); err != nil {
 			t.Fatalf("expected successful fetch without explicit SNI, got: %v", err)
 		}
 		wantSNI := ""

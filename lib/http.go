@@ -255,7 +255,12 @@ func (s *Server) RenderIndex(w http.ResponseWriter, r *http.Request, cr policy.C
 	var ogTags map[string]string = nil
 	if s.opts.OpenGraph.Enabled {
 		var err error
-		ogTags, err = s.OGTags.GetOGTags(r.Context(), r.URL, r.Host)
+		// X-Real-Ip holds the derived client IP at this point (set from the
+		// recomputed X-Forwarded-For by XForwardedForToXRealIP, or by
+		// use-remote-address / custom-real-ip-header when configured). Passing
+		// it down lets the OG fetcher attribute its request to the visitor.
+		clientIP := r.Header.Get("X-Real-Ip")
+		ogTags, err = s.OGTags.GetOGTags(r.Context(), r.URL, r.Host, clientIP)
 		if err != nil {
 			lg.ErrorContext(r.Context(), "failed to get OG tags", "err", err)
 		}

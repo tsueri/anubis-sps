@@ -31,7 +31,7 @@ func TestCacheReturnsDefault(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	result, err := cache.GetOGTags(t.Context(), u, "anubis.techaro.lol")
+	result, err := cache.GetOGTags(t.Context(), u, "anubis.techaro.lol", "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -128,7 +128,7 @@ func TestGetOGTags(t *testing.T) {
 
 	// Test fetching OG tags from the test server
 	// Pass the host from the parsed test server URL
-	ogTags, err := cache.GetOGTags(t.Context(), parsedURL, parsedURL.Host)
+	ogTags, err := cache.GetOGTags(t.Context(), parsedURL, parsedURL.Host, "")
 	if err != nil {
 		t.Fatalf("failed to get OG tags: %v", err)
 	}
@@ -148,14 +148,14 @@ func TestGetOGTags(t *testing.T) {
 
 	// Test fetching OG tags from the cache
 	// Pass the host from the parsed test server URL
-	ogTags, err = cache.GetOGTags(t.Context(), parsedURL, parsedURL.Host)
+	ogTags, err = cache.GetOGTags(t.Context(), parsedURL, parsedURL.Host, "")
 	if err != nil {
 		t.Fatalf("failed to get OG tags from cache: %v", err)
 	}
 
 	// Test fetching OG tags from the cache (3rd time)
 	// Pass the host from the parsed test server URL
-	newOgTags, err := cache.GetOGTags(t.Context(), parsedURL, parsedURL.Host)
+	newOgTags, err := cache.GetOGTags(t.Context(), parsedURL, parsedURL.Host, "")
 	if err != nil {
 		t.Fatalf("failed to get OG tags from cache: %v", err)
 	}
@@ -278,7 +278,7 @@ func TestGetOGTagsWithHostConsideration(t *testing.T) {
 			}, memory.New(t.Context()), TargetOptions{})
 
 			for i, req := range tc.requests {
-				ogTags, err := cache.GetOGTags(t.Context(), parsedURL, req.host)
+				ogTags, err := cache.GetOGTags(t.Context(), parsedURL, req.host, "")
 				if err != nil {
 					t.Errorf("Request %d (host: %s): unexpected error: %v", i+1, req.host, err)
 					continue // Skip further checks for this request if error occurred
