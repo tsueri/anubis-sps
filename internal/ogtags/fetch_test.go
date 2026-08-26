@@ -137,15 +137,10 @@ func (c *OGTagCache) fetchHTMLDocument(ctx context.Context, urlStr string, origi
 	return c.fetchHTMLDocumentWithCache(ctx, urlStr, originalHost, cacheKey)
 }
 
-// TestFetchForwardsOriginalHostHeader pins the behaviour that the OG fetcher tells
-// the backend which public hostname the visitor used, mirroring what
-// httputil.ReverseProxy does on the normal proxy path.
-//
-// Regression: with TargetOptions.Host set (the --target-host flag), the request's
-// Host header is pinned to the private origin hostname. A backend that resolves its
-// own vhost from X-Forwarded-Host (e.g. a WordPress multisite behind a per-instance
-// origin vhost) then cannot tell which site the tags are for, and bounces the fetch
-// with a redirect -> Anubis caches an empty tag map and silently serves no OG tags.
+// TestFetchForwardsOriginalHostHeader verifies the fetcher forwards the public
+// hostname in X-Forwarded-Host. With --target-host pinning Host to the private
+// origin, name-based backends need it to pick the right site; without it they
+// redirect and OG tags are silently dropped.
 func TestFetchForwardsOriginalHostHeader(t *testing.T) {
 	for _, tt := range []struct {
 		name              string
